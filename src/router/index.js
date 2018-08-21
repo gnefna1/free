@@ -12,16 +12,12 @@ export default new Router({
       path:"/register",
       name:"register",
       component:resolve=>require(['@/page/register.vue'],resolve)
+    },
+    {
+      path:"/detail",
+      name:"detail",
+      component:resolve=>require(['@/page/detail.vue'],resolve)
     }
-    // {
-    //   path: '/',
-    //   name: 'HelloWorld',
-    //   component: HelloWorld
-    // },
-    // {
-    //   path: '/home',
-    //   name: 'home',
-    //   component: home
-    // }
+    
   ]
 })

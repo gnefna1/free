@@ -3,8 +3,8 @@
         <pageHead></pageHead>
         <el-card class="box-card">
             <el-form :model="registerForm" label-width="80px" status-icon ref="form" class="registerForm">
-                <el-form-item label="用户名" prop="username" :rules="[required('用户名不能为空')]">
-                    <el-input type="text" v-model="registerForm.username"></el-input>
+                <el-form-item label="用户名" prop="username" :rules="[required('用户名不能为空'),queryUsername()]">
+                    <el-input type="text" v-model="registerForm.username" @change="queryUsername"></el-input>
                 </el-form-item>
                 <el-form-item label="密码" prop="password" :rules="[required('密码不能为空')]">
                     <el-input type="password" v-model="registerForm.password"></el-input>
@@ -34,11 +34,19 @@ export default {
                 password:"",
                 repassword:"",
                 email:"",
-            }
+            },
+            hasUsername:false
         }
     },
     created(){
         console.log(this.requireds)
+    },
+    watch:{
+        "registerForm.username":function(val) {
+            
+        }
+
+        // selectUsername
     },
     components: {
         pageHead
@@ -47,7 +55,7 @@ export default {
         submit(){
             this.$refs.form.validate(valid=>{
                 if(valid){
-                    this.axios.post(registerApi,this.registerForm).then(res=>{
+                    this.axios.post("/free/login",this.registerForm).then(res=>{
                         console.log(res)
                     }).catch(err=>{
                         console.log(err)
@@ -55,7 +63,8 @@ export default {
     
                 }
             })
-        }
+        },
+        
     }
 
 };

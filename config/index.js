@@ -17,6 +17,13 @@ module.exports = {
         pathRewrite: {
           '^/free': 'http://localhost:3000/'
         }
+      },
+      '/taobaoUrl': {
+        target: 'https://www.dliberty.com/tb/coupon/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/free': 'https://www.dliberty.com/tb/coupon/'
+        }
       }
     },
 
@@ -28,7 +35,7 @@ module.exports = {
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-    
+
     /**
      * Source Maps
      */
