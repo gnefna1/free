@@ -55,7 +55,7 @@ export default {
         submit(){
             this.$refs.form.validate(valid=>{
                 if(valid){
-                    this.axios.post("/free/login",this.registerForm).then(res=>{
+                    this.axios.post("/free/register",this.registerForm).then(res=>{
                         console.log(res)
                     }).catch(err=>{
                         console.log(err)

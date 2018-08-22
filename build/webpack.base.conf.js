@@ -80,5 +80,3 @@ module.exports = {
     child_process: 'empty'
   }
 }
-console.log(1111)
-console.log(vueLoaderConfig.loaders.less)

@@ -36,7 +36,7 @@ export default {
   },
   methods:{
   	calcPrice(price,couponMoney){
-  		return (price - couponMoney).toFixed(2);
+  		return (price - couponMoney || 0).toFixed(2);
   	},
 	copy() {
 		var Url2=document.getElementById("tpwd").innerText;
@@ -49,19 +49,20 @@ export default {
         oInput.style.display='none';
 		this.message = '已复制，请打开手机淘宝';
 	},
-	 getUrlKey:function(name){
-	  return decodeURIComponent((new RegExp('[?|&]'+name+'='+'([^&;]+?)(&|#|;|$)').exec(location.href)||[,""])[1].replace(/\+/g,'%20'))||null;
-	 }
+	//  getUrlKey:function(name){
+		//  this.query.id
+	//   return decodeURIComponent((new RegExp('[?|&]'+name+'='+'([^&;]+?)(&|#|;|$)').exec(location.href)||[,""])[1].replace(/\+/g,'%20'))||null;
+	//  }
   },
   created(){
-          var that = this;
-          debugger
-  		let id=this.getUrlKey("id")
+        console.log(document.title)
+  		let id=this.$route.query.id
         // 这样会有跨域问题
-        let url = 'taobaoUrl/' + id
+        let url = 'https://www.dliberty.com/tb/coupon/' + id
         this.axios.get(url)
-		.then(function (response) {
-			that.coupon = response.data.coupon;
+		.then( (response)=> {
+			this.coupon = response.data.coupon;
+			document.title = this.coupon.title
 		})
 		.catch(function (error) {
 			console.log(error);

@@ -11,6 +11,14 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
+      
+      '/taobaoUrl': {
+        target: 'https://www.dliberty.com/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/taobaoUrl': 'https://www.dliberty.com/'
+        }
+      },
       '/free': {
         target: 'http://localhost:3000/',
         changeOrigin: true,
@@ -18,13 +26,6 @@ module.exports = {
           '^/free': 'http://localhost:3000/'
         }
       },
-      '/taobaoUrl': {
-        target: 'https://www.dliberty.com/tb/coupon/',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/free': 'https://www.dliberty.com/tb/coupon/'
-        }
-      }
     },
 
     // Various Dev Server settings
@@ -64,7 +65,7 @@ module.exports = {
      * Source Maps
      */
 
-    productionSourceMap: true,
+    productionSourceMap: false,
     // https://webpack.js.org/configuration/devtool/#production
     devtool: '#source-map',
 
