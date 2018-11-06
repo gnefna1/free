@@ -17,7 +17,12 @@ export default new Router({
       path:"/detail",
       name:"detail",
       component:resolve=>require(['@/page/detail.vue'],resolve)
-    }
+    },
+    {
+      path:"/upload",
+      name:"upload",
+      component:resolve=>require(['@/page/upload.vue'],resolve)
+    },
     
   ]
 })
