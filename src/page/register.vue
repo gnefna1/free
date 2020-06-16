@@ -1,6 +1,6 @@
 <template>
     <div class="register">
-        <pageHead></pageHead>
+        <!-- <pageHead></pageHead> -->
         <el-card class="box-card">
             <el-form :model="registerForm" label-width="80px" status-icon ref="form" class="registerForm">
                 <el-form-item label="用户名" prop="username" :rules="[required('用户名不能为空'),queryUsername()]">
@@ -23,7 +23,6 @@
 
 <script>
 import pageHead from "../components/pageHead.vue";
-import { registerApi } from "../api";
 import { afeiCheck } from "../util/asyncValidatMinix.js";
 export default {
     mixins:[afeiCheck],
@@ -35,18 +34,12 @@ export default {
                 repassword:"",
                 email:"",
             },
-            hasUsername:false
+            hasUsername:false,
         }
     },
-    created(){
-        console.log(this.requireds)
-    },
+    created(){},
     watch:{
-        "registerForm.username":function(val) {
-            
-        }
-
-        // selectUsername
+        
     },
     components: {
         pageHead
@@ -55,18 +48,17 @@ export default {
         submit(){
             this.$refs.form.validate(valid=>{
                 if(valid){
-                    this.axios.post("/free/register",this.registerForm).then(res=>{
-                        console.log(res)
+                    this.axios.post("/free/queryUserName/register",this.registerForm).then(res=>{
+                        if(res.code === 0){
+                            this.$router.push("/login")
+                        }
                     }).catch(err=>{
                         console.log(err)
                     })
-    
                 }
             })
         },
-        
     }
-
 };
 </script>
 

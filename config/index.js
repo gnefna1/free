@@ -11,21 +11,13 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      
-      '/taobaoUrl': {
-        target: 'https://www.dliberty.com/',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/taobaoUrl': 'https://www.dliberty.com/'
-        }
-      },
       '/free': {
         target: 'http://localhost:3000/',
         changeOrigin: true,
         pathRewrite: {
-          '^/free': 'http://localhost:3000/'
+          '^/free': ''
         }
-      },
+      }
     },
 
     // Various Dev Server settings

@@ -20,20 +20,32 @@ let afeiCheck = {
             }
             
         },
+        tipMsg(msg) {
+            return {
+                validator: (rule, value, callback) => {
+                    if (msg) {
+                     
+                        callback(new Error(msg))
+                    } else {
+                     
+                        callback()
+                    }
+                }, trigger: 'blur'
+            }
+
+        },
 
         queryUsername(){
             return {
                 validator: (rule, value, callback) => {
-                    axios.post("/free/selectUsername",{val:value}).then(res=>{
-                        debugger
-                        if(res.data){
-                            callback(new Error('用户名被占用'));
+                    axios.post("/free/queryUserName",{val:value}).then(res=>{
+                        if(res.data.data.length){
+                            callback(new Error(res.data.message));
                         }else{
                             callback()
                         }
                     }).catch(err=>{
-                        callback()
-                        console.log(err)
+                        callback(new Error('查询失败'))
                     })
                 }, trigger: 'blur' 
             }
